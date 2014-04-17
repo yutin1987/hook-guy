@@ -1,5 +1,4 @@
 var http = require("http");
-var EventEmitter2 = require( "eventemitter2" ).EventEmitter2;
 var util = require("util");
 var querystring = require("querystring");
 
