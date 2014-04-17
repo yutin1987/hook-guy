@@ -2,6 +2,8 @@ var http = require("http");
 var util = require("util");
 var querystring = require("querystring");
 
+var port = 9000;
+
 this.server = http.createServer( function( req, res ) {
   var data = "";
   if ( req.method === "POST" ) {
