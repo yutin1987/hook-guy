@@ -15,15 +15,10 @@ this.server = http.createServer( function( req, res ) {
   }
 
   req.on('end', function() {
-    console.log(data);
-    if ( /^payload=/.test( data ) ) {
-      console.log(querystring.unescape(data.slice(8)));
-      var payload = JSON.parse( querystring.unescape(data.slice(8)) );
-      console.log(payload);
-      res.writeHead( 200, {
-        'Content-type': 'text/html'
-      });
-    }
+    console.log(JSON.parse(data));
+    res.writeHead( 200, {
+      'Content-type': 'text/html'
+    });
     res.end();
   });
 
