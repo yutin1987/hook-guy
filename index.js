@@ -2,7 +2,7 @@ var http = require("http");
 var util = require("util");
 var querystring = require("querystring");
 
-var port = 9000;
+var port = 8000;
 
 this.server = http.createServer( function( req, res ) {
   var data = "";
@@ -23,4 +23,4 @@ this.server = http.createServer( function( req, res ) {
     res.end();
   });
 
-}).listen( port || 9000 );
+}).listen( port || 8000 );
