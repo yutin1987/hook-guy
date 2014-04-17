@@ -5,6 +5,8 @@ var querystring = require("querystring");
 var port = 8000;
 
 this.server = http.createServer( function( req, res ) {
+  console.log(req.method);
+
   var data = "";
   if ( req.method === "POST" ) {
     req.on( "data", function( chunk ) {
@@ -12,7 +14,7 @@ this.server = http.createServer( function( req, res ) {
     });
   }
 
-  req.on( "end", function() {
+  req.on('end', function() {
     if ( /^payload=/.test( data ) ) {
       var payload = JSON.parse( querystring.unescape(data.slice(8)) );
       console.log(payload);
