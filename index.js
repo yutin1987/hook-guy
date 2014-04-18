@@ -31,7 +31,7 @@ this.server = http.createServer( function( req, res ) {
           fs.exists(path, function (exists) { cb(exists ? true : null)});
         },
         function (cb) {
-          fs.mkdir(path, 777, cb); 
+          fs.mkdir(path, 0777, cb); 
         },
         function (cb) {
           rep = git('/var/www/html/'+branch);
