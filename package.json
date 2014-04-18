@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/yutin1987/hook-guy",
   "dependencies": {
-    "simple-git": "~0.7.0"
+    "simple-git": "~0.7.0",
+    "async": "~0.7.0"
   }
 }
