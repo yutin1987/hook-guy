@@ -19,12 +19,13 @@ this.server = http.createServer( function( req, res ) {
 
   req.on('end', function() {
     payload = JSON.parse(data);
-    console.log(payload);
+    var ref = payload.ref;
+    var branch = ref.substr(ref.lastIndexOf('/')+1);
+    var path = '/var/www/html/'+branch;
+    console.log('update ' + branch);
     if ( /^0+$/.test(payload.after) ){
+      fs.rmdir(path);
     }else{
-      var ref = payload.ref;
-      var branch = ref.substr(ref.lastIndexOf('/')+1);
-      var path = '/var/www/html/'+branch;
       var rep;
       async.series([
         function (cb) {
