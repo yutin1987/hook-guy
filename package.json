@@ -1,0 +1,22 @@
+{
+  "name": "hook-guy",
+  "version": "0.1.0",
+  "description": "hook-guy ======== {\"before\":\"0000000000000000000000000000000000000000\",\"after\":\"34f4733b571f9228f4035f48ad40acd558ef5444\",\"ref\":\"refs/heads/feature_swagger\",\"user_id\":18,\"user_name\":\"yuting_liu\",\"project_id\":131,\"repository\":{\"name\":\"logistics\",\"url\":\"git@gitlab.hq.hiiir:ec_web_groups/logistics.git\",\"description\":\"logistics EC\\u7269\\u6d41\\u5b50\\u7cfb\\u7d71 - Main Git Repository\",\"homepage\":\"http://gitlab.hq.hiiir/ec_web_groups/logistics\"},\"commits\":[],\"total_commits_count\":0}",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yutin1987/hook-guy.git"
+  },
+  "author": "YuTin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yutin1987/hook-guy/issues"
+  },
+  "homepage": "https://github.com/yutin1987/hook-guy",
+  "dependencies": {
+    "simple-git": "~0.7.0"
+  }
+}

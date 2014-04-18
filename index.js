@@ -1,6 +1,7 @@
 var http = require("http");
 var util = require("util");
 var querystring = require("querystring");
+var git = require('simple-git');
 
 var port = 8000;
 
@@ -15,7 +16,20 @@ this.server = http.createServer( function( req, res ) {
   }
 
   req.on('end', function() {
-    console.log(JSON.parse(data));
+    payload = JSON.parse(data);
+    console.log(payload);
+    if ( /^0+$/.test(payload.after) ){
+    }else{
+      var ref = payload.ref;
+      var branch = ref.substr(ref.lastIndexOf('/')+1)
+      var rep = git('/var/www/html/'+branch);
+      rep.clone(payload.repository.url, './', function(){
+        rep.checkout(branch, function(){
+          rep.pull();
+        })
+      });
+    }
+
     res.writeHead( 200, {
       'Content-type': 'text/html'
     });
