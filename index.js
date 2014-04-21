@@ -1,9 +1,9 @@
-var http = require("http");
-var util = require("util");
-var querystring = require("querystring");
-var git = require('simple-git');
-var async = require('async');
-var fs = require('fs');
+var http = require("http"),
+    util = require("util"),
+    querystring = require("querystring"),
+    git = require('simple-git'),
+    async = require('async'),
+    fs = require('fs');
 
 var port = 8000;
 
@@ -24,7 +24,7 @@ this.server = http.createServer( function( req, res ) {
     var path = '/var/www/html/'+branch;
     console.log('update ' + branch);
     if ( /^0+$/.test(payload.after) ){
-      fs.rmdir(path);
+      fs.unlink(path);
     }else{
       var rep;
       async.series([
