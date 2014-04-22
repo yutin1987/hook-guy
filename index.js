@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var http = require("http"),
     util = require("util"),
     querystring = require("querystring"),
@@ -42,6 +44,7 @@ this.server = http.createServer( function( req, res ) {
           fs.exists(path, function (exists) { cb(exists ? true : null)});
         },
         function (cb) {
+          console.log('mkdir ' + vhost);
           fs.mkdir(path, 0777, cb); 
         },
         function (cb) {
