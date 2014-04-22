@@ -32,7 +32,7 @@ this.server = http.createServer( function( req, res ) {
     var branch = ref.substr(ref.lastIndexOf('/')+1);
     var vhost = branch + (program.vhost ? '.' + program.vhost : '');
     var path = '/var/www/html/' + vhost;
-    console.log('updated ' + branch);
+    console.log('updated ' + vhost);
     if ( /^0+$/.test(payload.after) ){
       fs.unlink(path);
     }else{
@@ -45,10 +45,12 @@ this.server = http.createServer( function( req, res ) {
           fs.mkdir(path, 0777, cb); 
         },
         function (cb) {
+          console.log('git clone ' + vhost);
           rep = git('/var/www/html/'+branch+'.'+program.vhost);
           rep.clone(payload.repository.url, './', cb);
         },
         function (cb) {
+          console.log('set config ' + vhost);
           var nginx = program.nginx || '/etc/nginx/sites-available';
           var config = program.config || 'nginx';
           config = fs.readFileSync(config);
@@ -58,7 +60,9 @@ this.server = http.createServer( function( req, res ) {
       ], function () {
         rep = git('/var/www/html/'+branch+'.'+program.vhost);
         rep.checkout(branch, function(){
-          rep.pull();
+          rep.pull(function (){
+            console.log('git pull ' + vhost);
+          });
         })
       });
     }
