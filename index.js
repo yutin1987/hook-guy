@@ -11,11 +11,11 @@ var program = require('commander');
 
 program
   .version('0.0.1')
-  .option('-p, --port', 'Port')
-  .option('-d, --dir', '/var/www/html')
-  .option('-v, --vhost', 'Virtual Host')
-  .option('-n, --nginx', 'Nginx Path')
-  .option('-c, --config', 'Nginx Config')
+  .option('-p, --port [port]', 'Port')
+  .option('-d, --dir [path]', '/var/www/html')
+  .option('-v, --vhost [host]', 'Virtual Host')
+  .option('-n, --nginx [path]', 'Nginx Path')
+  .option('-c, --config [file]', 'Nginx Config')
   .parse(process.argv);
 
 this.server = http.createServer( function( req, res ) {
