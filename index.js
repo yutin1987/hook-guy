@@ -8,6 +8,7 @@ var http = require("http"),
     fs = require('fs');
 
 var program = require('commander');
+var exec = require('child_process').exec;
 
 program
   .version('0.0.1')
@@ -55,10 +56,15 @@ this.server = http.createServer( function( req, res ) {
         function (cb) {
           console.log('set config ' + vhost);
           var nginx = program.nginx || '/etc/nginx/sites-available';
-          var config = program.config || 'nginx';
-          config = fs.readFileSync(config).toString();
-          config = config.replace(/\${virtual_host}/gi, vhost);
-          fs.writeFile(nginx + '/' + vhost, config, cb);
+          var config = program.config;
+          if (config && fs.existsSync(config)){
+            config = fs.readFileSync(config).toString();
+            config = config.replace(/\${virtual_host}/gi, vhost);
+            fs.writeFile(nginx + '/' + vhost, config, cb);
+            exec('sudo service nginx reload');
+          }else{
+            cb();
+          }
         }
       ], function () {
         rep = git('/var/www/html/'+branch+'.'+program.vhost);
