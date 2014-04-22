@@ -56,7 +56,7 @@ this.server = http.createServer( function( req, res ) {
           console.log('set config ' + vhost);
           var nginx = program.nginx || '/etc/nginx/sites-available';
           var config = program.config || 'nginx';
-          config = fs.readFileSync(config);
+          config = fs.readFileSync(config).toString();
           config = config.replace(/\${virtual_host}/gi, vhost);
           fs.writeFile(nginx + '/' + vhost, config, cb);
         }
